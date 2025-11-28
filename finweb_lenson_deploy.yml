@@ -15,7 +15,7 @@ variables:
   - name: resourceGroup
     value: 'Training-Student-018-OC010-Lab01'        # <-- Update this
   - name: webAppName
-    value: 'finweb-lenson>'                # <-- Update this Azure Web App target
+    value: 'finweb-lenson'                # <-- Update this Azure Web App target
 
 steps:
 - script: |
@@ -96,7 +96,7 @@ steps:
       az webapp deploy \
         --resource-group $(resourceGroup) \
         --name $(webAppName) \
-        --src ./deploy.zip \
+        --src deploy.zip \
         --type zip
   displayName: 'Deploy Artifact to Azure Web App'
 
