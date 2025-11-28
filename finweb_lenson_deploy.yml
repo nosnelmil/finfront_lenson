@@ -83,15 +83,20 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'AzureDevopsConnection'        # <-- Name of your service connection
+    azureSubscription: 'AzureDevopsConnection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
       echo "Deploying deploy.zip to Azure Web App: $(webAppName)..."
+      if [ ! -f "./deploy.zip" ]; then
+        echo "Error: deploy.zip not found!"
+        exit 1
+      fi
       ls
       az webapp deploy \
         --resource-group $(resourceGroup) \
         --name $(webAppName) \
-        --src-path deploy.zip \
+        --src-path ./deploy.zip \
         --type zip
   displayName: 'Deploy Artifact to Azure Web App'
+
