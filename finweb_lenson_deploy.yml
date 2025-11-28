@@ -96,7 +96,7 @@ steps:
       az webapp deploy \
         --resource-group $(resourceGroup) \
         --name $(webAppName) \
-        --src deploy.zip \
+        --src-path .deploy.zip \
         --type zip
   displayName: 'Deploy Artifact to Azure Web App'
 
